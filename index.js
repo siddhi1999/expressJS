@@ -19,14 +19,32 @@ const student = new mongoose.Schema({
 const Student = new mongoose.model("Student", student);   
 
 const adder = async () => {
-    const ss = new Student({
-        name: "Sid",
-        workout: false,
-        height: 5
-    });
+
+    // const ss= await Student.find(); //give all the objects
+
+    // const ss= await Student.find({height: {$eq: 6}});  //find particular object
+
+    const ss= await Student.find({height: {$in: [5,6]}});  //any object who have this value in the array
+
+    console.log(ss);
+
+    //another way to insert value
+    // const ss = await Student.create({
+    //     name: "Chinki",
+    //     workout: true,
+    //     height: 6
+    // });
+
+    //basic way to insert value
+    // const ss = new Student({
+    //     name: "Sid",
+    //     workout: false,
+    //     height: 5
+    // });
     
-    //wait for this line to completed then proceed to another
-    await ss.save();
+    // //wait for this line to completed then proceed to another
+    // //save it in the database
+    // await ss.save();
 };
 
 adder();
